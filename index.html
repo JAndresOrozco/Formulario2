@@ -20,25 +20,44 @@
                 <form>
                     <div class="form-group">
                         <label for="idinput">Edad:</label>
-                        <input class="form-control" type="text" value="">
+                        <input class="form-control" type="text" value="" id="edad">
                     </div>
+                    <h4 id="ms"></h4>
                 </form>
             </div>
             <div class="card-footer mb-3">
-                <button type="button" class="btn btn-outline-warning offset-10">Enviar</button>
+                <button id="btnguardar" type="button" class="btn btn-outline-warning offset-10">Enviar</button>
             </div>
                 </div>
             </div>
         </div>
     </div>
-        
-    
-
-
-
     <script src="js/jquery-3.4.1.min.js"/></script>
     <script src="jq.js"></script>
     <script src="js/bootstrap.js" type="text/javascript"/></script>
-    <script></script>
+    <script>
+        $(document).ready(function(){
+            $('#btnguardar').click(function(){
+                $.ajax({
+                    url: "miphp.php",
+                    data:{
+                        nombre:"Andres",
+                        edad: $("#edad").val()},
+                    type:"GET",
+                    dataType:'text',
+                    success: function(data){
+                        $("#ms").html(data);
+                    },
+                    error: function(xhr,status){
+                        alert('Error');
+                    },
+                    complete: function(xhr,status){
+                        alert("Completado");
+                    }
+                })
+            })
+        });
+
+    </script>
 </body>
 </html>
